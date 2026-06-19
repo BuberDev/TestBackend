@@ -59,3 +59,18 @@ export const verifySuperAdmin = (req, res, next) => {
         next(createError(500, err.message));
     }
 };
+
+export const verifyIsSameUser = (req, res, next) => {
+    try {
+        const { userId } = req.params;
+        const allowedRoles = ['manager', 'super_admin'];
+
+        if (String(req.user?._id) === String(userId) || allowedRoles.includes(req.user?.role)) {
+            return next();
+        }
+
+        next(createError(403, 'You can only access your own user data'));
+    } catch (err) {
+        next(createError(500, err.message));
+    }
+};
