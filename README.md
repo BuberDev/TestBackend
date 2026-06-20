@@ -6,6 +6,25 @@
 
 3. Develop an `updateUser` API endpoint to allow updating user information with appropriate validation.
 
+## Technical Assessment Solution
+
+Implemented the requested user API improvements:
+
+- Added same-user authorization for retrieving and updating user data.
+- Added validation and allowed-field filtering for client and employee creation.
+- Added duplicate checks for username, email, and phone.
+- Added a validated user update endpoint.
+- Prevented profile updates from modifying protected fields such as `role` and `password`.
+
+### Updated Endpoints
+
+- `GET /api/v1/user/get/single/:userId`
+- `POST /api/v1/user/create/client`
+- `POST /api/v1/user/create/employee`
+- `PUT /api/v1/user/update/:userId`
+
+Protected endpoints require the JWT token in the `authtoken` request header.
+
 
 ## Required:
  Node.js 18+
@@ -117,6 +136,5 @@ Define the necessary environment variables for both the frontend and backend. Sa
    - Gain insights into sales performance, customer behavior, and market trends.
 
 ---
-
 
 
